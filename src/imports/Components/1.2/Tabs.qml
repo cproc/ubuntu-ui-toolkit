@@ -297,7 +297,7 @@ PageTreeNode {
         }
     }
 
-    Object {
+    Item {
         id: internal
         property AppHeader header: tabs.__propagated ? tabs.__propagated.header : null
 

@@ -20,7 +20,7 @@ import Ubuntu.Components 1.3
   \internal
   documented in PageHeadConfiguration.qdoc
  */
-Object {
+Item {
     // To be used inside a Page only.
     id: headerConfig
 
