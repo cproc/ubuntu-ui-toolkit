@@ -54,9 +54,6 @@ Item {
 
     property bool locked: false
 
-    // auto-updated by AppHeader, but may be set by the developer
-    property bool visible: true
-
     property string title
     property Flickable flickable
 }

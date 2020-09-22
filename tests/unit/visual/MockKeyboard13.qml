@@ -21,8 +21,8 @@ Item {
     id: inputMethod
     function show() { visible = true; }
     function commit() { }
-    property bool visible: false
     property rect keyboardRectangle: Qt.rect(0, 0, 0, units.gu(20))
+    visible: false
 
     Rectangle {
         x: parent.x
