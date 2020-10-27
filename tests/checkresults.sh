@@ -36,7 +36,6 @@ for _XML in $*; do
                 tst_datepicker.bug1567840.SEGFAULT.12.qml \
                 tst_datepicker.bug1567840.SEGFAULT.13.qml \
                 tst_textinput_touch.SEGFAULT.11.qml \
-                swipearea \
                 qquick_image_extension \
                 tst_label13.qml \
                 performance \
