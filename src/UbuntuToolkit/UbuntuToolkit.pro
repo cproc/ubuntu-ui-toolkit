@@ -1,20 +1,20 @@
 TARGET = UbuntuToolkit
-QT = core-private gui-private qml-private quick-private testlib dbus svg organizer \
+QT = core-private gui-private qml-private quick-private testlib svg \
      UbuntuGestures-private UbuntuMetrics
 
 #Qt SystemInfo
-QT *= systeminfo systeminfo-private
+#QT *= systeminfo systeminfo-private
 
-unix {
-    CONFIG += link_pkgconfig
-    PKGCONFIG += gio-2.0 dbus-1 libnih libnih-dbus
-}
+#unix {
+#    CONFIG += link_pkgconfig
+#    PKGCONFIG += gio-2.0 dbus-1 libnih libnih-dbus-dev
+#}
 
-!contains(QT_ARCH, arm) {
-    DEFINES += UBUNTUTOOLKIT_ENABLE_X11_TOUCH_EMULATION
-    LIBS += -lX11 -lxcb -lXi
-    SOURCES += mousetouchadaptor_x11.cpp
-}
+#!contains(QT_ARCH, arm) {
+#    DEFINES += UBUNTUTOOLKIT_ENABLE_X11_TOUCH_EMULATION
+#    LIBS += -lX11 -lxcb -lXi
+#    SOURCES += mousetouchadaptor_x11.cpp
+#}
 
 # Uncomment to compile out qDebug() calls.
 # DEFINES += QT_NO_DEBUG_OUTPUT
@@ -22,10 +22,6 @@ unix {
 HEADERS += \
     $$PWD/actionlist_p.h \
     $$PWD/adapters/actionsproxy_p.h \
-    $$PWD/adapters/alarmsadapter_p.h \
-    $$PWD/adapters/dbuspropertywatcher_p.h \
-    $$PWD/alarmmanager_p.h \
-    $$PWD/alarmmanager_p_p.h \
     $$PWD/asyncloader_p.h \
     $$PWD/asyncloader_p_p.h \
     $$PWD/colorutils_p.h \
@@ -42,8 +38,6 @@ HEADERS += \
     $$PWD/menubar_p.h \
     $$PWD/menubar_p_p.h \
     $$PWD/menugroup_p.h \
-    $$PWD/mousetouchadaptor_p.h \
-    $$PWD/mousetouchadaptor_p_p.h \
     $$PWD/privates/appheaderbase_p.h \
     $$PWD/privates/frame_p.h \
     $$PWD/privates/listitemdragarea_p.h \
@@ -77,9 +71,6 @@ HEADERS += \
     $$PWD/ucactionitem_p.h \
     $$PWD/ucactionitem_p_p.h \
     $$PWD/ucactionmanager_p.h \
-    $$PWD/ucalarm_p.h \
-    $$PWD/ucalarm_p_p.h \
-    $$PWD/ucalarmmodel_p.h \
     $$PWD/ucapplication_p.h \
     $$PWD/ucargument_p.h \
     $$PWD/ucarguments_p.h \
@@ -117,8 +108,6 @@ HEADERS += \
     $$PWD/ucproportionalshape_p.h \
     $$PWD/ucqquickimageextension_p.h \
     $$PWD/ucscalingimageprovider_p.h \
-    $$PWD/ucserviceproperties_p.h \
-    $$PWD/ucserviceproperties_p_p.h \
     $$PWD/ucslotslayout_p.h \
     $$PWD/ucslotslayout_p_p.h \
     $$PWD/ucstatesaver_p.h \
@@ -133,16 +122,12 @@ HEADERS += \
     $$PWD/ucubuntushapeoverlay_p.h \
     $$PWD/ucubuntushapetextures_p.h \
     $$PWD/ucunits_p.h \
-    $$PWD/ucurihandler_p.h \
     $$PWD/unitythemeiconprovider_p.h \
     $$PWD/unixsignalhandler_p.h
 
 SOURCES += \
     $$PWD/actionlist.cpp \
     $$PWD/adapters/actionsproxy_p.cpp \
-    $$PWD/adapters/alarmsadapter_organizer.cpp \
-    $$PWD/adapters/dbuspropertywatcher_p.cpp \
-    $$PWD/alarmmanager_p.cpp \
     $$PWD/asyncloader.cpp \
     $$PWD/colorutils.cpp \
     $$PWD/exclusivegroup.cpp \
@@ -155,7 +140,6 @@ SOURCES += \
     $$PWD/menu.cpp \
     $$PWD/menubar.cpp \
     $$PWD/menugroup.cpp \
-    $$PWD/mousetouchadaptor.cpp \
     $$PWD/privates/appheaderbase.cpp \
     $$PWD/privates/frame.cpp \
     $$PWD/privates/listitemdragarea.cpp \
@@ -184,8 +168,6 @@ SOURCES += \
     $$PWD/ucactioncontext.cpp \
     $$PWD/ucactionitem.cpp \
     $$PWD/ucactionmanager.cpp \
-    $$PWD/ucalarm.cpp \
-    $$PWD/ucalarmmodel.cpp \
     $$PWD/ucapplication.cpp \
     $$PWD/ucargument.cpp \
     $$PWD/ucarguments.cpp \
@@ -213,7 +195,6 @@ SOURCES += \
     $$PWD/ucproportionalshape.cpp \
     $$PWD/ucqquickimageextension.cpp \
     $$PWD/ucscalingimageprovider.cpp \
-    $$PWD/ucserviceproperties.cpp \
     $$PWD/ucslotslayout.cpp \
     $$PWD/ucstatesaver.cpp \
     $$PWD/ucstyleditembase.cpp \
@@ -225,7 +206,6 @@ SOURCES += \
     $$PWD/ucubuntushapeoverlay.cpp \
     $$PWD/ucubuntushapetextures.cpp \
     $$PWD/ucunits.cpp \
-    $$PWD/ucurihandler.cpp \
     $$PWD/ucviewitemsattached.cpp \
     $$PWD/unitythemeiconprovider.cpp \
     $$PWD/unixsignalhandler_p.cpp

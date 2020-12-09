@@ -263,11 +263,11 @@ int main(int argc, const char *argv[])
         window->setFlags(Qt::FramelessWindowHint);
     }
     window->show();
-
+#if 0
     if (args.isSet(_enableTouch)) {
         // has no effect if we have touch screen
         new UT_PREPEND_NAMESPACE(MouseTouchAdaptor)(&application);
     }
-
+#endif
     return application.exec();
 }

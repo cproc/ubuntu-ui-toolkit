@@ -222,11 +222,11 @@ void UbuntuToolkitModule::registerTypesToVersion(const char *uri, int major, int
     qmlRegisterType<UCArguments>(uri, major, minor, "Arguments");
     qmlRegisterType<UCArgument>(uri, major, minor, "Argument");
     qmlRegisterType<QQmlPropertyMap>();
-    qmlRegisterType<UCAlarm>(uri, major, minor, "Alarm");
-    qmlRegisterType<UCAlarmModel>(uri, major, minor, "AlarmModel");
+    //qmlRegisterType<UCAlarm>(uri, major, minor, "Alarm");
+    //qmlRegisterType<UCAlarmModel>(uri, major, minor, "AlarmModel");
     qmlRegisterType<UCStateSaver>(uri, major, minor, "StateSaver");
     qmlRegisterType<UCStateSaverAttached>();
-    qmlRegisterSimpleSingletonType<UCUriHandler>(uri, major, minor, "UriHandler");
+    //qmlRegisterSimpleSingletonType<UCUriHandler>(uri, major, minor, "UriHandler");
     qmlRegisterType<UCMouse>(uri, major, minor, "Mouse");
     qmlRegisterType<UCInverseMouse>(uri, major, minor, "InverseMouse");
     qmlRegisterType<UCActionItem>(uri, major, minor, "ActionItem");
@@ -357,7 +357,7 @@ void UbuntuToolkitModule::defineModule()
     qmlRegisterType<QSortFilterProxyModelQML>(uri, 1, 1, "SortFilterModel");
     qmlRegisterUncreatableType<FilterBehavior>(uri, 1, 1, "FilterBehavior", notInstantiatable);
     qmlRegisterUncreatableType<SortBehavior>(uri, 1, 1, "SortBehavior", notInstantiatable);
-    qmlRegisterType<UCServiceProperties, 1>(uri, 1, 1, "ServiceProperties");
+    //qmlRegisterType<UCServiceProperties, 1>(uri, 1, 1, "ServiceProperties");
 
     // register 1.2 only API
     qmlRegisterType<UCListItem>(uri, 1, 2, "ListItem");

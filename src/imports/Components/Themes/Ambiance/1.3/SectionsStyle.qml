@@ -15,7 +15,7 @@
  */
 import QtQuick 2.4
 import QtQuick.Window 2.2
-import QtGraphicalEffects 1.0
+//import QtGraphicalEffects 1.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Private 1.3
 import Ubuntu.Components.Styles 1.3 as Style

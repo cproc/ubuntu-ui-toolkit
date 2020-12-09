@@ -22,7 +22,7 @@ void* alignedAlloc(size_t alignment, size_t size)
     DASSERT(IS_POWER_OF_TWO(alignment));
     // DASSERT(((size % alignment) == 0));  // FIXME(loicm) ASSERT doesn't support '%'...
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(__GENODE__)
     void* pointer;
     posix_memalign(&pointer, alignment, size);
     return pointer;

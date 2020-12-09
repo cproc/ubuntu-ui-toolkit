@@ -1,6 +1,8 @@
 TARGET = UbuntuMetrics
 QT = core-private gui-private quick-private
-LIBS += -ldl
+!genode {
+	LIBS += -ldl
+}
 
 contains(QT_CONFIG, opengles2) {
     CONFIG += egl
