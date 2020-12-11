@@ -16,7 +16,7 @@
 
 #include "livetimer_p_p.h"
 
-#include <QtDBus/QDBusConnection>
+//#include <QtDBus/QDBusConnection>
 
 #include "timeutils_p.h"
 
@@ -31,10 +31,12 @@ SharedLiveTimer::SharedLiveTimer(QObject* parent)
     m_timer.setSingleShot(true);
     connect(&m_timer, &QTimer::timeout, this, &SharedLiveTimer::timeout);
 
+#if 0
     QDBusConnection::systemBus().connect(
         dbusService, QStringLiteral("/org/freedesktop/timedate1"),
         QStringLiteral("org.freedesktop.DBus.Properties"), QStringLiteral("PropertiesChanged"),
         this, SLOT(timedate1PropertiesChanged(QString, QVariantMap, QStringList)));
+#endif
 }
 
 void SharedLiveTimer::registerTimer(LiveTimer *timer)

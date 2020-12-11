@@ -19,9 +19,9 @@
 #include "i18n_p.h"
 
 namespace C {
-#include <libintl.h>
-#include <glib.h>
-#include <glib/gi18n.h>
+//#include <libintl.h>
+//#include <glib.h>
+//#include <glib/gi18n.h>
 }
 #include <stdlib.h>
 #include <locale.h>
@@ -103,8 +103,8 @@ QString UbuntuI18n::language() const {
  * Specify that the domain_name message catalog can be found
  * in dir_name rather than in the system locale data base.
  */
-void UbuntuI18n::bindtextdomain(const QString& domain_name, const QString& dir_name) {
-    C::bindtextdomain(domain_name.toUtf8(), dir_name.toUtf8());
+void UbuntuI18n::bindtextdomain(const QString&, const QString&) {
+    //C::bindtextdomain(domain_name.toUtf8(), dir_name.toUtf8());
     Q_EMIT domainChanged();
 }
 
@@ -113,7 +113,7 @@ void UbuntuI18n::setDomain(const QString &domain) {
         return;
 
     m_domain = domain;
-    C::textdomain(domain.toUtf8());
+    //C::textdomain(domain.toUtf8());
     /*
      The default is /usr/share/locale if we don't set a folder
      For click we use APP_DIR/share/locale
@@ -124,7 +124,7 @@ void UbuntuI18n::setDomain(const QString &domain) {
         appDir = QStringLiteral("/usr");
     }
     QString localePath(QDir(appDir).filePath(QStringLiteral("share/locale")));
-    C::bindtextdomain(domain.toUtf8(), localePath.toUtf8());
+    //C::bindtextdomain(domain.toUtf8(), localePath.toUtf8());
     Q_EMIT domainChanged();
 }
 
@@ -152,7 +152,7 @@ void UbuntuI18n::setLanguage(const QString &lang) {
      The inverse form of setlocale as used in the constructor, passing
      a valid locale string updates all category type defaults.
      */
-    setlocale(LC_ALL, lang.toUtf8());
+    //setlocale(LC_ALL, lang.toUtf8());
     Q_EMIT languageChanged();
 }
 
@@ -162,7 +162,8 @@ void UbuntuI18n::setLanguage(const QString &lang) {
  */
 QString UbuntuI18n::tr(const QString& text)
 {
-    return QString::fromUtf8(C::gettext(text.toUtf8()));
+    //return QString::fromUtf8(C::gettext(text.toUtf8()));
+    return text;
 }
 
 /*!
@@ -175,20 +176,27 @@ QString UbuntuI18n::tr(const QString& text)
  */
 QString UbuntuI18n::tr(const QString &singular, const QString &plural, int n)
 {
-    return QString::fromUtf8(C::ngettext(singular.toUtf8(), plural.toUtf8(), n));
+    //return QString::fromUtf8(C::ngettext(singular.toUtf8(), plural.toUtf8(), n));
+    if (n == 1)
+	 return singular;
+    return plural;
 }
 
 /*!
  * \qmlmethod string i18n::dtr(string domain, string text)
  * Translate \a text using gettext. Uses the specified domain \a domain instead of i18n.domain.
  */
-QString UbuntuI18n::dtr(const QString& domain, const QString& text)
+QString UbuntuI18n::dtr(const QString&, const QString& text)
 {
+#if 0
     if (domain.isNull()) {
         return QString::fromUtf8(C::dgettext(NULL, text.toUtf8()));
     } else {
         return QString::fromUtf8(C::dgettext(domain.toUtf8(), text.toUtf8()));
     }
+#else
+    return text;
+#endif
 }
 
 /*!
@@ -198,13 +206,20 @@ QString UbuntuI18n::dtr(const QString& domain, const QString& text)
  * Uses \a domain for the domain instead of i18n.domain, and \a singular or \a plural
  * as input for the translation depending on the number of items \a n.
  */
-QString UbuntuI18n::dtr(const QString& domain, const QString& singular, const QString& plural, int n)
+QString UbuntuI18n::dtr(const QString&, const QString& singular, const QString& plural, int n)
 {
+#if 0
     if (domain.isNull()) {
         return QString::fromUtf8(C::dngettext(NULL, singular.toUtf8(), plural.toUtf8(), n));
     } else {
         return QString::fromUtf8(C::dngettext(domain.toUtf8(), singular.toUtf8(), plural.toUtf8(), n));
     }
+#else
+    if (n == 1)
+	return singular;
+    else
+	return plural;
+#endif
 }
 
 /*!
@@ -222,13 +237,17 @@ QString UbuntuI18n::ctr(const QString& context, const QString& text)
  * Translate \a text using gettext. Uses the specified domain \a domain instead of i18n.domain.
  * \a context is only visible to the translator and helps disambiguating for very short texts
  */
-QString UbuntuI18n::dctr(const QString& domain, const QString& context, const QString& text)
+QString UbuntuI18n::dctr(const QString&, const QString&, const QString& text)
 {
+#if 0
     if (domain.isNull()) {
         return QString::fromUtf8(C::g_dpgettext2(NULL, context.toUtf8(), text.toUtf8()));
     } else {
         return QString::fromUtf8(C::g_dpgettext2(domain.toUtf8(), context.toUtf8(), text.toUtf8()));
     }
+#else
+    return text;
+#endif
 }
 
 /*!

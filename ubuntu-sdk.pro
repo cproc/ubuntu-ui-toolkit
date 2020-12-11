@@ -11,13 +11,13 @@ load(qt_parts)
 src_uitk_launcher.subdir = ubuntu-ui-toolkit-launcher
 src_uitk_launcher.depends = sub-src
 
-SUBDIRS += po app-launch-profiler src_uitk_launcher apicheck
-!CONFIG(no_docs) {
-    SUBDIRS += documentation
-}
+SUBDIRS += po src_uitk_launcher apicheck
+#!CONFIG(no_docs) {
+#    SUBDIRS += documentation
+#}
 
-sub_tests.CONFIG -= no_default_target
-sub_tests.CONFIG -= no_default_install
+#sub_tests.CONFIG -= no_default_target
+#sub_tests.CONFIG -= no_default_install
 
 # additional 'make test' target required by continuous integration system
 test.target = test

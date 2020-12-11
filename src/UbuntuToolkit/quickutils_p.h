@@ -26,7 +26,7 @@
 class QQuickItem;
 class QQmlEngine;
 class QQmlComponent;
-class QInputInfoManager;
+//class QInputInfoManager;
 class QInputDevice;
 
 UT_NAMESPACE_BEGIN
@@ -89,7 +89,7 @@ private:
     explicit QuickUtils(QObject *parent = 0);
     QPointer<QQuickWindow> m_rootWindow;
     QPointer<QQuickView> m_rootView;
-    QInputInfoManager *m_inputInfo;
+    //QInputInfoManager *m_inputInfo;
     QStringList m_omitIM;
     QSet<QString> m_mice;
     QSet<QString> m_keyboards;
@@ -104,10 +104,12 @@ private:
     void registerDevice(QInputDevice *device, const QString &deviceId);
     void setMouseAttached(bool set);
     void setKeyboardAttached(bool set);
+#if 0
 private Q_SLOTS:
     void onInputInfoReady();
     void onDeviceAdded(QInputDevice *device);
     void onDeviceRemoved(const QString deviceId);
+#endif
 };
 
 #define UC_QML_DEPRECATION_WARNING(msg) \
