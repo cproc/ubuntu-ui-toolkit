@@ -23,7 +23,6 @@
 #include <QtCore/QSettings>
 #include <QtCore/QStandardPaths>
 #include <QtCore/QtDebug>
-#include <QtGui/QIcon>
 #include <QtGui/QImageReader>
 
 UT_NAMESPACE_BEGIN
@@ -276,22 +275,9 @@ private:
 };
 
 UnityThemeIconProvider::UnityThemeIconProvider(const QString &themeName):
-    QQuickImageProvider(QQuickImageProvider::Image),
-    m_themeName(themeName)
+  QQuickImageProvider(QQuickImageProvider::Image)
 {
-    if (m_themeName.isEmpty())
-        // Used by the test.
-        m_themeName = QString::fromLocal8Bit(qgetenv("UITK_ICON_THEME"));
-}
-
-QSharedPointer<class IconTheme> UnityThemeIconProvider::getTheme()
-{
-    if (!m_themeName.isEmpty())
-        return IconTheme::get(m_themeName);
-    else if (!QIcon::themeName().isEmpty())
-        return IconTheme::get(QIcon::themeName());
-    else
-        return IconTheme::get(QStringLiteral("suru"));
+    theme = IconTheme::get(themeName);
 }
 
 QImage UnityThemeIconProvider::requestImage(const QString &id, QSize *size, const QSize &requestedSize)
@@ -300,7 +286,7 @@ QImage UnityThemeIconProvider::requestImage(const QString &id, QSize *size, cons
     // https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html
     QSet<QString> alreadySearchedThemes;
     const QStringList names = id.split(QLatin1Char(','), QString::SkipEmptyParts);
-    QImage image = getTheme()->findBestIcon(names, size, requestedSize, &alreadySearchedThemes);
+    QImage image = theme->findBestIcon(names, size, requestedSize, &alreadySearchedThemes);
 
     if (image.isNull()) {
         IconTheme::IconThemePointer theme = IconTheme::get(QStringLiteral("hicolor"));
